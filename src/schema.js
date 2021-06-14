@@ -7,4 +7,4 @@ const tallySchema = new Schema({
     death: Schema.Types.Number,
 });
 
-exports.tallySchema = tallySchema;
+module.exports.tallySchema = tallySchema;
