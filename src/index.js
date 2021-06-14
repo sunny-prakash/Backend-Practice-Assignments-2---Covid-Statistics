@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const port = 8080;
+const mongoose = require("mongoose");
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.urlencoded({ extended: false }));
@@ -40,7 +41,8 @@ app.get("/hotspotStates", async (req, res) => {
 
     let states = [];
     covidDetails.forEach((element) => {
-        let value = (element.infected - element.recovered) / element.infected;
+        let value = ((element.infected - element.recovered) / element.infected).toFixed(5);
+        console.log(value);
         if (value > 0.1) {
             states.push({
                 state: element.state,
